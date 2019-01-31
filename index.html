@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>window对象</title>
+		<style>
+			#img{
+				width: 300px;
+				height: 300px;
+				position: absolute;
+				left: 0px;
+				top: 50%;
+			}
+			
+		</style>
+		<script>
+			var w ;//页面的宽度
+			var img;//图像对象
+			var imgLeft;//图像左边的位置
+			var imgWidth; //图像 的宽度
+			var delta =5 ;//每次移动的距离
+			var delay =10;//时间
+			window.onload = function(){
+				
+				w = window.innerWidth;
+				img = document.getElementById("img");
+				imgLeft = img.offsetLeft;
+				imgWidth = img.width;
+				//调用move（）方法
+				move();
+			};
+			function move(){
+				//判断图像是否越界（超出页面的宽度）
+				if(imgLeft<0||imgLeft+imgWidth>w){
+					delta=-delta;//变号
+				}
+				img.style.left = imgLeft+delta+"px";
+				//移动位置后需要重新修改左边的位置
+				imgLeft = img.offsetLeft;
+				//重复不断调用函数
+				setTimeout(move,delay);
+			}		
+		</script>
+	</head>
+	<body>
+	   
+		<img src="img.jpg" id="img" /> <!--图片在-->
+	</body>
+</html>
+
